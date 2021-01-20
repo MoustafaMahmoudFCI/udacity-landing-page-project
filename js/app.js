@@ -32,6 +32,7 @@ sections.forEach((section) => {
   let link = document.createElement("a");
   link.setAttribute("href", "#");
   link.setAttribute('data-section' , section.getAttribute('id'));
+  link.setAttribute('class' , 'menu__link');
   link.textContent = section.getAttribute("data-nav");
   item.appendChild(link);
   fragment.appendChild(item);
