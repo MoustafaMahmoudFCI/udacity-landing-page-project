@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Manipulating the DOM</title>
+    <title>Udacity Landing Page Project</title>
     <!-- Load Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Merriweather&display=swap"
@@ -17,10 +17,15 @@
     <!-- HTML Follows BEM naming conventions 
   IDs are only used for sections to connect menu achors to sections -->
     <header class="page__header">
-      <nav class="navbar__menu">
-        <!-- Navigation starts as empty UL that will be populated with JS -->
-        <ul id="navbar__list"></ul>
-      </nav>
+      <div class="container">
+        <nav class="navbar__menu">
+          <div class="logo">
+            <a href="#">Udacity</a>
+          </div>
+          <!-- Navigation starts as empty UL that will be populated with JS -->
+          <ul id="navbar__list"></ul>
+        </nav>
+      </div>
     </header>
     <main>
       <header class="main__hero">
@@ -30,9 +35,9 @@
     a data attribute that will populate the li node.
     Adding more sections will automatically populate nav.
     The first section is set to active class by default -->
-      <section id="section1" data-nav="Section 1" class="your-active-class">
+      <section id="about-us" data-nav="About US" class="active-section">
         <div class="landing__container">
-          <h2>Section 1</h2>
+          <h2>About Us</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             fermentum metus faucibus lectus pharetra dapibus. Suspendisse
@@ -56,9 +61,9 @@
           </p>
         </div>
       </section>
-      <section id="section2" data-nav="Section 2">
+      <section id="services" data-nav="Services">
         <div class="landing__container">
-          <h2>Section 2</h2>
+          <h2>Services</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             fermentum metus faucibus lectus pharetra dapibus. Suspendisse
@@ -82,9 +87,9 @@
           </p>
         </div>
       </section>
-      <section id="section3" data-nav="Section 3">
+      <section id="features" data-nav="features">
         <div class="landing__container">
-          <h2>Section 3</h2>
+          <h2>features</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             fermentum metus faucibus lectus pharetra dapibus. Suspendisse
@@ -106,6 +111,23 @@
             consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget
             elementum tortor mollis non.
           </p>
+        </div>
+      </section>
+      <section class="contact" id="contact" data-nav="contact">
+        <div class="landing__container">
+          <h2>contact</h2>
+          <form class="form">
+            <aside class="left">
+              <input type="text" placeholder="Enter your name" />
+              <input type="text" placeholder="Username" />
+              <input type="email" placeholder="Enter your Email" />
+              <input type="text" placeholder="Subject" />
+            </aside>
+            <aside class="right">
+              <textarea placeholder="Your message ..."></textarea>
+              <input type="submit" value="Send" />
+            </aside>
+          </form>
         </div>
       </section>
     </main>
