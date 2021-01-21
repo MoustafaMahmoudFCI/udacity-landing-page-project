@@ -82,6 +82,7 @@ main {
 }
 
 section {
+  padding: 50px 0;
   position: relative;
   min-height: 80vh;
 }
@@ -93,6 +94,9 @@ section {
   max-width: 1140px;
   padding: 0 15px;
   margin: 0 auto;
+}
+.page__header.fade-in {
+  opacity: 1;
 }
 .navbar__menu {
   display: flex;

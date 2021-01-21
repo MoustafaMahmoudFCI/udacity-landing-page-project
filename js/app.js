@@ -1,62 +1,79 @@
 /**
- *
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- *
- * Dependencies: None
- *
- * JS Version: ES2015/ES6
- *
- * JS Standard: ESlint
- *
- */
-
-/**
  * Define Global Variables
  *
  */
+const header = document.querySelector(".page__header");
+const headerHeight = header.offsetHeight + 20;
 const navbarList = document.querySelector("#navbar__list");
 const main = document.querySelector("main");
-
 // get all sections in the page
 const sections = main.querySelectorAll("section");
 
-
-
-// build the nav
+// build menu
 const fragment = document.createDocumentFragment();
 sections.forEach((section) => {
-  let item = document.createElement("li");
-  let link = document.createElement("a");
-  link.setAttribute("href", "#");
-  link.setAttribute('data-section' , section.getAttribute('id'));
-  link.setAttribute('class' , 'menu__link');
-  link.textContent = section.getAttribute("data-nav");
-  item.appendChild(link);
-  fragment.appendChild(item);
+    let item = document.createElement("li");
+    let link = document.createElement("a");
+    link.setAttribute("href", "#");
+    link.setAttribute("data-section", section.getAttribute("id"));
+    link.setAttribute("class", "menu__link");
+    link.textContent = section.getAttribute("data-nav");
+    item.appendChild(link);
+    fragment.appendChild(item);
 });
 navbarList.appendChild(fragment);
-// Add class 'active' to section when near top of viewport
 
-// Scroll to anchor ID using scrollTO event
-const links = navbarList.querySelectorAll('a');
-links.forEach(link=>{
-    link.addEventListener('click',e=>{
+// scroll to section on link click
+const links = navbarList.querySelectorAll("a");
+
+links.forEach((link) => {
+    link.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log(e.target.dataset.section)
-        document.querySelector('#'+e.target.dataset.section).scrollIntoView({behavior:"smooth"})
+        document
+            .querySelector("#" + e.target.dataset.section)
+            .scrollIntoView({ behavior: "smooth" });
+        navbarList.querySelectorAll("a").forEach((ele) => {
+            ele.classList.remove("active");
+        });
+        e.target.classList.add("active");
     });
 });
-/**
- * End Main Functions
- * Begin Events
- *
+
+// Set link as active on scroll
+window.addEventListener("scroll", navbarHeighter);
+// Set sections as active
+
+/*
+ **  Functions
  */
 
-// Build menu
+// heighlight navbar links on scroll
+function navbarHeighter() {
+    // get current position
+    let scrollY = window.scrollY;
 
-// Scroll to section on link click
+    // loop through section to get section height , top and ID
+    sections.forEach((section) => {
+        let sectionHeight = section.offsetHeight;
+        let sectionTop = section.offsetTop;
+        let sectionId = section.getAttribute("id");
+        //console.log(sectionHeight + "--" + sectionTop + "--" + sectionId);
+        //if (scrollY > sectionTop) {
 
-// Set sections as active
+        if (
+            scrollY >= sectionTop - sectionHeight * 0.25 &&
+            scrollY <
+            sectionTop + sectionHeight - sectionHeight * 0.25
+        ) {
+            section.classList.add("active-section");
+            document
+                .querySelector("a[data-section=" + sectionId + "]")
+                .classList.add("active");
+        } else {
+            section.classList.remove("active-section");
+            document
+                .querySelector("a[data-section=" + sectionId + "]")
+                .classList.remove("active");
+        }
+    });
+}
