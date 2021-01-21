@@ -6,8 +6,8 @@ const header = document.querySelector(".page__header");
 const headerHeight = header.offsetHeight + 20;
 const navbarList = document.querySelector("#navbar__list");
 const main = document.querySelector("main");
-// get all sections in the page
 const sections = main.querySelectorAll("section");
+const backToTopBtn = document.querySelector('.back-to-top');
 
 // build menu
 const fragment = document.createDocumentFragment();
@@ -39,9 +39,27 @@ links.forEach((link) => {
     });
 });
 
+
 // Set link as active on scroll
 window.addEventListener("scroll", navbarHeighter);
-// Set sections as active
+
+// show and hide back to top btn on scroll
+window.addEventListener("scroll", () => {
+    let status = window.scrollY >= 300 ? 'block' : 'none';
+    backToTopBtn.style.display = status;
+});
+
+// back to top on click
+backToTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('header').scrollIntoView({ behavior: "smooth" });
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+});
+
 
 /*
  **  Functions
